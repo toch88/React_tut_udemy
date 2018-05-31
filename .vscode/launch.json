@@ -8,6 +8,8 @@
     "webRoot": "${workspaceRoot}/src",
     "sourceMapPathOverrides": {
       "webpack:///src/*": "${webRoot}/*"
-    }
-  }]
+    },
+    "userDataDir": true,
+  }],
+    
 }
