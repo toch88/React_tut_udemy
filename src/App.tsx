@@ -1,6 +1,6 @@
 import * as React from 'react';
 import './App.css';
-import Person, { IPersonPropsType } from './Person/Preson'
+import Person, { IPersonPropsType } from './Person/Preson';
 // import logo from './logo.svg';
 
 class App extends React.Component {
@@ -10,6 +10,17 @@ class App extends React.Component {
       { name: 'Steve', age: 15 },
       { name: 'Matt', age: 25 }
     ] as IPersonPropsType[]
+  };
+
+  public switchNameHandler = (newName:any) => {
+    // console.log('Was clicked');
+    this.setState({
+      persons: [
+        { name: newName, age: 5 },
+        { name: 'Steve', age: 15 },
+        { name: 'Mateusz', age: 25 }
+      ] as IPersonPropsType[]
+    });
   }
 
   public render() {
@@ -17,11 +28,11 @@ class App extends React.Component {
       <div className="App">
         <h1>Hi</h1>
         <p>this is working</p>
-        <button>Switch Name</button>
+        <button onClick={this.switchNameHandler.bind(this, 'Mateusz')}>Switch Name</button>
         <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person name={this.state.persons[1].name} age={this.state.persons[1].age} />
+        <Person click={this.switchNameHandler.bind(this, 'Stephane')} name={this.state.persons[1].name} age={this.state.persons[1].age} />
         <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
-        
+
         {/* <Person dupa="30" /> */}
       </div>
     );

@@ -3,6 +3,7 @@ import * as React from 'react';
 export interface IPersonPropsType {
     name: string;
     age: number;
+    click?:any;
 }
 
 // const preson: any = (props: IPersonPropsType) => {
@@ -17,7 +18,7 @@ export default class Person extends React.Component<IPersonPropsType, any> {
     public render() {
         return (
             <div>
-                <p>I'm {this.props.name} and my age is {this.props.age} </p>
+                <p onClick={this.props.click} >I'm {this.props.name} and my age is {this.props.age} </p>
                 <p>{this.props.children}</p>
             </div>
         );
