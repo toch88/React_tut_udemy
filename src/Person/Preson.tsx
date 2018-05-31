@@ -1,6 +1,6 @@
 import * as React from 'react';
 
-interface IPersonPropsType {
+export interface IPersonPropsType {
     name: string;
     age: number;
 }
@@ -9,7 +9,7 @@ interface IPersonPropsType {
 //     return <p>I'm {props.name} and my age is {props.age} </p>
 // };
 
-export default class HelloForm extends React.Component<IPersonPropsType, any> {
+export default class Person extends React.Component<IPersonPropsType, any> {
     constructor(props: IPersonPropsType) {
         super(props);
     }
