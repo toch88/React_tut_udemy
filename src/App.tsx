@@ -1,4 +1,5 @@
 import * as React from 'react';
+// import { SyntheticEvent } from 'react';
 import './App.css';
 import Person, { IPersonPropsType } from './Person/Preson';
 // import logo from './logo.svg';
@@ -12,7 +13,7 @@ class App extends React.Component {
     ] as IPersonPropsType[]
   };
 
-  public switchNameHandler = (newName:any) => {
+  public switchNameHandler = (newName: string) => {
     // console.log('Was clicked');
     this.setState({
       persons: [
@@ -23,20 +24,49 @@ class App extends React.Component {
     });
   }
 
+  public nameChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
+    this.setState({
+      persons: [
+        { name: "Max", age: 5 },
+        { name: e.currentTarget.value, age: 15 },
+        { name: 'Mateusz', age: 25 }
+      ] as IPersonPropsType[]
+    });
+  }
+
   public render() {
+
+    const style: React.CSSProperties = {
+      backgroundColor: 'white',
+      border: '1px solid blue',
+      font: 'inherit',
+      padding: '8px',
+    };
+
     return (
       <div className="App">
         <h1>Hi</h1>
         <p>this is working</p>
-        <button onClick={this.switchNameHandler.bind(this, 'Mateusz')}>Switch Name</button>
-        <Person name={this.state.persons[0].name} age={this.state.persons[0].age} />
-        <Person click={this.switchNameHandler.bind(this, 'Stephane')} name={this.state.persons[1].name} age={this.state.persons[1].age} />
-        <Person name={this.state.persons[2].name} age={this.state.persons[2].age} />
+        <button
+          style={style}
+          onClick={this.switchNameHandler.bind(this, 'Mateusz')}>
+          Switch Name
+        </button>
 
-        {/* <Person dupa="30" /> */}
+        <Person name={this.state.persons[0].name}
+          age={this.state.persons[0].age} />
+
+        <Person click={this.switchNameHandler.bind(this, 'Stephane')}
+          name={this.state.persons[1].name}
+          age={this.state.persons[1].age}
+          changed={this.nameChangeHandler} />
+
+        <Person name={this.state.persons[2].name}
+          age={this.state.persons[2].age} />
+
       </div>
     );
-    // return React.createElement('div', {className: 'App'}, React.createElement('h1', null, 'Hi'));
+
   }
 }
 

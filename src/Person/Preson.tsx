@@ -1,10 +1,16 @@
 import * as React from 'react';
+import './Person.css';
+
 
 export interface IPersonPropsType {
     name: string;
     age: number;
-    click?:any;
+    click?: any;
+
+    changed?: (e:React.FormEvent<HTMLInputElement>)=>void;
 }
+
+
 
 // const preson: any = (props: IPersonPropsType) => {
 //     return <p>I'm {props.name} and my age is {props.age} </p>
@@ -17,9 +23,10 @@ export default class Person extends React.Component<IPersonPropsType, any> {
 
     public render() {
         return (
-            <div>
+            <div className="Person">
                 <p onClick={this.props.click} >I'm {this.props.name} and my age is {this.props.age} </p>
                 <p>{this.props.children}</p>
+                <input type="text" onChange={this.props.changed} value={this.props.name} />
             </div>
         );
     }
