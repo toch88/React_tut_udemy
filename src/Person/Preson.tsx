@@ -5,9 +5,9 @@ interface IPersonPropsType {
     age: number;
 }
 
-const preson: any = (props: IPersonPropsType) => {
-    return <p>I'm {props.name} and my age is {props.age} </p>
-};
+// const preson: any = (props: IPersonPropsType) => {
+//     return <p>I'm {props.name} and my age is {props.age} </p>
+// };
 
 export default class HelloForm extends React.Component<IPersonPropsType, any> {
     constructor(props: IPersonPropsType) {
@@ -16,7 +16,10 @@ export default class HelloForm extends React.Component<IPersonPropsType, any> {
 
     public render() {
         return (
-             <p>I'm {this.props.name} and my age is {this.props.age} </p>        
+            <div>
+                <p>I'm {this.props.name} and my age is {this.props.age} </p>
+                <p>{this.props.children}</p>
+            </div>
         );
     }
 }
