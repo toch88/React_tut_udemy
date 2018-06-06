@@ -10,7 +10,8 @@ class App extends React.Component {
       { name: 'Max', age: 5 },
       { name: 'Steve', age: 15 },
       { name: 'Matt', age: 25 }
-    ] as IPersonPropsType[]
+    ] as IPersonPropsType[],
+    showPersons: false as boolean
   };
 
   public switchNameHandler = (newName: string) => {
@@ -29,9 +30,14 @@ class App extends React.Component {
       persons: [
         { name: "Max", age: 5 },
         { name: e.currentTarget.value, age: 15 },
-        { name: 'Mateusz', age: 25 }
+        { name: 'Wiola', age: 25 }
       ] as IPersonPropsType[]
     });
+  }
+
+  public togglePersonHandler = () => {
+    const doseShow=this.state.showPersons;
+    this.setState({showPersons: !doseShow});
   }
 
   public render() {
@@ -49,21 +55,25 @@ class App extends React.Component {
         <p>this is working</p>
         <button
           style={style}
-          onClick={this.switchNameHandler.bind(this, 'Mateusz')}>
+          onClick={this.togglePersonHandler}>
           Switch Name
         </button>
+        {this.state.showPersons===true ?
 
-        <Person name={this.state.persons[0].name}
-          age={this.state.persons[0].age} />
+          <div>
+            <Person name={this.state.persons[0].name}
+              age={this.state.persons[0].age} />
 
-        <Person click={this.switchNameHandler.bind(this, 'Stephane')}
-          name={this.state.persons[1].name}
-          age={this.state.persons[1].age}
-          changed={this.nameChangeHandler} />
+            <Person click={this.switchNameHandler.bind(this, 'Stephane')}
+              name={this.state.persons[1].name}
+              age={this.state.persons[1].age}
+              changed={this.nameChangeHandler} />
 
-        <Person name={this.state.persons[2].name}
-          age={this.state.persons[2].age} />
+            <Person name={this.state.persons[2].name}
+              age={this.state.persons[2].age} />
+          </div>
 
+          : null}
       </div>
     );
 
