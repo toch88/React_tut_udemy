@@ -14,32 +14,17 @@ class App extends React.Component {
     showPersons: false as boolean
   };
 
-  public switchNameHandler = (newName: string) => {
-    // console.log('Was clicked');
-    this.setState({
-      persons: [
-        { name: newName, age: 5 },
-        { name: 'Steve', age: 15 },
-        { name: 'Mateusz', age: 25 }
-      ] as IPersonPropsType[]
-    });
-  }
-
-  public nameChangeHandler = (e: React.FormEvent<HTMLInputElement>) => {
-    this.setState({
-      persons: [
-        { name: "Max", age: 5 },
-        { name: e.currentTarget.value, age: 15 },
-        { name: 'Wiola', age: 25 }
-      ] as IPersonPropsType[]
-    });
-  }
-
   public togglePersonHandler = () => {
     const doseShow = this.state.showPersons;
     this.setState({ showPersons: !doseShow });
   }
 
+
+  public deletePersonHandler = (personIndex:number):any => {
+    const persons=this.state.persons;
+    persons.splice(personIndex, 1);
+    this.setState({persons: persons});
+  }
   public render() {
 
     const style: React.CSSProperties = {
@@ -49,22 +34,22 @@ class App extends React.Component {
       padding: '8px',
     };
 
+
+
     // tslint:disable-next-line:jsx-self-close
     let persons: JSX.Element = <div><p></p></div>;
 
     if (this.state.showPersons) {
       persons = (
         <div>
-          <Person name={this.state.persons[0].name}
-            age={this.state.persons[0].age} />
-
-          <Person click={this.switchNameHandler.bind(this, 'Stephane')}
-            name={this.state.persons[1].name}
-            age={this.state.persons[1].age}
-            changed={this.nameChangeHandler} />
-
-          <Person name={this.state.persons[2].name}
-            age={this.state.persons[2].age} />
+          {this.state.persons.map(
+            (person, index) => {
+              return <Person
+                name={person.name}
+                age={person.age}
+                click={() => this.deletePersonHandler(index)} />;
+            }
+          )}
         </div>
       );
     }
