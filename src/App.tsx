@@ -36,8 +36,8 @@ class App extends React.Component {
   }
 
   public togglePersonHandler = () => {
-    const doseShow=this.state.showPersons;
-    this.setState({showPersons: !doseShow});
+    const doseShow = this.state.showPersons;
+    this.setState({ showPersons: !doseShow });
   }
 
   public render() {
@@ -49,6 +49,26 @@ class App extends React.Component {
       padding: '8px',
     };
 
+    // tslint:disable-next-line:jsx-self-close
+    let persons: JSX.Element = <div><p></p></div>;
+
+    if (this.state.showPersons) {
+      persons = (
+        <div>
+          <Person name={this.state.persons[0].name}
+            age={this.state.persons[0].age} />
+
+          <Person click={this.switchNameHandler.bind(this, 'Stephane')}
+            name={this.state.persons[1].name}
+            age={this.state.persons[1].age}
+            changed={this.nameChangeHandler} />
+
+          <Person name={this.state.persons[2].name}
+            age={this.state.persons[2].age} />
+        </div>
+      );
+    }
+
     return (
       <div className="App">
         <h1>Hi</h1>
@@ -58,22 +78,7 @@ class App extends React.Component {
           onClick={this.togglePersonHandler}>
           Switch Name
         </button>
-        {this.state.showPersons===true ?
-
-          <div>
-            <Person name={this.state.persons[0].name}
-              age={this.state.persons[0].age} />
-
-            <Person click={this.switchNameHandler.bind(this, 'Stephane')}
-              name={this.state.persons[1].name}
-              age={this.state.persons[1].age}
-              changed={this.nameChangeHandler} />
-
-            <Person name={this.state.persons[2].name}
-              age={this.state.persons[2].age} />
-          </div>
-
-          : null}
+        {persons}
       </div>
     );
 
