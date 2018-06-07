@@ -21,7 +21,8 @@ class App extends React.Component {
 
 
   public deletePersonHandler = (personIndex:number):any => {
-    const persons=this.state.persons;
+    // const persons=this.state.persons.slice();
+    const persons=[...this.state.persons]; //new array with elements form person 
     persons.splice(personIndex, 1);
     this.setState({persons: persons});
   }
@@ -47,7 +48,7 @@ class App extends React.Component {
               return <Person
                 name={person.name}
                 age={person.age}
-                click={() => this.deletePersonHandler(index)} />;
+                click={this.deletePersonHandler.bind(index)} />;
             }
           )}
         </div>
