@@ -7,9 +7,9 @@ import Person, { IPersonPropsType } from './Person/Preson';
 class App extends React.Component {
   public state = {
     persons: [
-      { name: 'Max', age: 5 },
-      { name: 'Steve', age: 15 },
-      { name: 'Matt', age: 25 }
+      { key: 'aasd', name: 'Max', age: 5 },
+      { key: 'dsdf', name: 'Steve', age: 15 },
+      { key: 'fhgj', name: 'Matt', age: 25 }
     ] as IPersonPropsType[],
     showPersons: false as boolean
   };
@@ -20,11 +20,11 @@ class App extends React.Component {
   }
 
 
-  public deletePersonHandler = (personIndex:number):any => {
+  public deletePersonHandler = (personIndex: number): any => {
     // const persons=this.state.persons.slice();
-    const persons=[...this.state.persons]; //new array with elements form person 
+    const persons = [...this.state.persons]; // new array with elements form person
     persons.splice(personIndex, 1);
-    this.setState({persons: persons});
+    this.setState({ persons }); // ({persons: persons}) it's equal
   }
   public render() {
 
@@ -48,7 +48,8 @@ class App extends React.Component {
               return <Person
                 name={person.name}
                 age={person.age}
-                click={this.deletePersonHandler.bind(index)} />;
+                click={this.deletePersonHandler.bind(index)}
+                key={person.key} />;
             }
           )}
         </div>

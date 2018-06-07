@@ -3,6 +3,7 @@ import './Person.css';
 
 
 export interface IPersonPropsType {
+    key:AAGUID;
     name: string;
     age: number;
     click?: any;
