@@ -1,9 +1,6 @@
 import * as React from 'react';
-// import { SyntheticEvent } from 'react';
 import './App.css';
-// import Person, { IPersonPropsType } from './Person/Preson';
 import ListItem from './ListItem/ListItem';
-// import logo from './logo.svg';
 
 class App extends React.Component {
 
@@ -20,14 +17,12 @@ class App extends React.Component {
     console.log(`Trybi ${this}`);
   }
 
-
   public render() {
 
  
     return (
       <div id="App">
-      <ul>
-        
+      <ul>        
         {this.state.persons.map(person =>
           <ListItem key={person.key} item={person} onItemClick={this.handleClick} />
         )}
