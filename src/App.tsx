@@ -2,6 +2,7 @@ import * as React from 'react';
 // import { SyntheticEvent } from 'react';
 import './App.css';
 // import Person, { IPersonPropsType } from './Person/Preson';
+import ListItem from './ListItem/ListItem';
 // import logo from './logo.svg';
 
 class App extends React.Component {
@@ -15,24 +16,29 @@ class App extends React.Component {
     showPersons: false as boolean
   };
 
-  public handleClick(key:number){
-    console.log(`Trybi ${key}`);
+  public handleClick=(key?: any)=> {
+    console.log(`Trybi ${this}`);
   }
 
+
   public render() {
-    
+
+ 
     return (
+      <div id="App">
       <ul>
+        
         {this.state.persons.map(person =>
-          <li key={person.key} onClick={this.handleClick.bind(this, person.key)}>
-            {person.name}
-          </li>
+          <ListItem key={person.key} item={person} onItemClick={this.handleClick} />
         )}
       </ul>
+      </div>
     );
-  
+
   }
 
 }
 
 export default App;
+
+
