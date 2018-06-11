@@ -14,7 +14,9 @@ class App extends React.Component {
   };
 
   public handleClick=(key?: any)=> {
-    console.log(`Trybi ${this}`);
+      const tempPersons=[...this.state.persons];
+      tempPersons.splice(key, 1);     
+      this.setState({persons:tempPersons});
   }
 
   public render() {
